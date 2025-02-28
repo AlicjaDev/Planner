@@ -1,6 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
 import { getFirestore, collection, getDocs, addDoc, doc, deleteDoc, updateDoc } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-lite.js";
-  
+
 // Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyASZJUbaKS5ZeZzhXNtOB9q30LcxlL3Fq4",
@@ -44,7 +44,7 @@ async function fetchEvents() {
   });
 }
 
-// Helper function to convert 12-hour time to 24-hour time for sorting
+// convert 12-hour time to 24-hour time for sorting
 function convertTimeTo24Hour(time) {
   const [timePart, period] = time.split(' ');
   let [hours, minutes] = timePart.split(':');
@@ -62,18 +62,17 @@ document.addEventListener('DOMContentLoaded',  async function () {
 
   await fetchEvents();
 
-  // Generate time options from 12:00 AM to 12:00 PM in 30-minute intervals
+  // 30-minute intervals
   const timeOptions = [];
   for (let hour = 0; hour < 24; hour++) {
     for (let minute of ['00', '30']) {
-      const period = hour < 12 ? 'AM' : 'PM'; // Determine AM or PM
-      const displayHour = hour === 0 ? 12 : hour > 12 ? hour - 12 : hour; // Convert to 12-hour format
+      const period = hour < 12 ? 'AM' : 'PM'; 
+      const displayHour = hour === 0 ? 12 : hour > 12 ? hour - 12 : hour;
       const timeString = `${displayHour}:${minute} ${period}`;
       timeOptions.push({ value: timeString, label: timeString });
     }
   }
 
-  // Initialize Choices.js
   const timeSelect = document.getElementById('eventTimeInput');
   const choices = new Choices(timeSelect, {
     choices: timeOptions,
@@ -92,10 +91,8 @@ document.addEventListener('DOMContentLoaded',  async function () {
     shouldSort: false,
   });
 
-
   load();
 });
-
 
 function timeToMinutes(time) {
   const [hourMin, period] = time.split(' ');
@@ -107,9 +104,8 @@ function timeToMinutes(time) {
     hours = 0;
   }
 
-  return hours * 60 + minutes; // Convert to total minutes since midnight
+  return hours * 60 + minutes; 
 }
-
 
 let eventToEdit = null;
 
@@ -122,17 +118,14 @@ function openEditEventModal(event) {
   backDrop.style.display = 'block';
 }
 
-
-
 function openModal(date) {
   clicked = date;
 
   const eventsForDay = events.filter(e => e.date === clicked);
 
   if (eventsForDay.length > 0) {
-    // Sort events based on time in minutes
     document.getElementById('eventText').innerHTML = eventsForDay
-      .sort((a, b) => timeToMinutes(a.time) - timeToMinutes(b.time)) // Sort by time
+      .sort((a, b) => timeToMinutes(a.time) - timeToMinutes(b.time))
       .map((e, index) => {
         return `
           <div class="event-detail">
@@ -146,9 +139,7 @@ function openModal(date) {
       })
       .join('');
 
-          // <button class="delete-event-button" data-event-id="${e.id}">Delete</button>
-
-    // Add event listeners to the Edit buttons
+    
     document.querySelectorAll('.edit-event-button').forEach(button => {
       button.addEventListener('click', (event) => {
         const eventId = event.target.getAttribute('data-event-id');
@@ -166,7 +157,6 @@ function openModal(date) {
 
   backDrop.style.display = 'block';
 }
-
 
 function load() {
   const dt = new Date();
@@ -230,11 +220,7 @@ function load() {
 function closeModal() {
   eventTitleInput.classList.remove('error');
   newEventModal.style.display = 'none';
-
-  // const deleteEventModal = document.getElementById('deleteEventModal');
-
   deleteEventModal.style.display = 'none';
-  // deleteEventModal.style.display = 'none';
   backDrop.style.display = 'none';
   eventTitleInput.value = '';
   document.getElementById('eventDescriptionInput').value = '';
@@ -268,111 +254,34 @@ async function saveEvent() {
 }
 
 
-
-// async function deleteEvent() {
-//   const eventIndexInput = document.getElementById('eventIndexInput').value;
-//   const eventIndex = parseInt(eventIndexInput, 10); // Convert the input to an integer
-
-//   if (isNaN(eventIndex) || eventIndex <= 0 || eventIndex > events.length) {
-//     alert('Please enter a valid event number.');
-//     return;
-//   }
-
-//   // Find the event based on the index entered by the user
-//   const eventToDelete = events[eventIndex - 1]; // Assuming events are 1-indexed
-
-//   if (eventToDelete) {
-//     await deleteDoc(doc(db, 'events', eventToDelete.id)); // Delete the event from Firestore
-//     await fetchEvents(); // Fetch the updated events from Firebase
-//     load(); // Refresh the calendar with the updated events
-//     alert('Event deleted successfully');
-//   } else {
-//     alert('Event not found.');
-//   }
-
-//   closeDeletePrompt(); // Close the prompt after the event is deleted
-// }
-
-
-
-// async function deleteEvent() {
-//   const eventIndexInput = document.getElementById('eventIndexInput').value;
-//   const eventIndex = parseInt(eventIndexInput, 10); // Convert the input to an integer
-
-//   if (isNaN(eventIndex) || eventIndex <= 0 || eventIndex > events.length) {
-//     alert('Please enter a valid event number.');
-//     return;
-//   }
-
-//   // Find the event based on the index entered by the user
-//   const eventToDelete = events[eventIndex - 1]; // Assuming events are 1-indexed
-
-//   if (eventToDelete) {
-//     await deleteDoc(doc(db, 'events', eventToDelete.id)); // Delete the event from Firestore
-//     await fetchEvents(); // Fetch the updated events from Firebase
-//     load(); // Refresh the calendar with the updated events
-//     alert('Event deleted successfully');
-//   } else {
-//     alert('Event not found.');
-//   }
-
-//   closeDeletePrompt(); // Close the prompt after the event is deleted
-// }
-
-// // Open delete prompt when the "Delete Event" button is clicked
-// document.getElementById('deleteButton').addEventListener('click', openDeletePrompt);
-
-// // Event listener to trigger the delete event only when "Confirm Delete" is clicked
-// document.getElementById('confirmDelete').addEventListener('click', deleteEvent);
-
-// // Event listener to cancel the delete operation and close the modal when "Cancel" is clicked
-// document.getElementById('cancelDelete').addEventListener('click', closeDeletePrompt);
-
-// // Close the delete prompt modal when clicking outside of it
-// window.addEventListener('click', (event) => {
-//   const deletePromptModal = document.getElementById('deletePromptModal');
-//   if (event.target === deletePromptModal) {
-//     closeDeletePrompt();
-//   }
-// });
-
-
-
-
-// Fix: Only delete event when user confirms
 async function deleteEvent() {
   const eventIndexInput = document.getElementById('eventIndexInput').value;
-  const eventIndex = parseInt(eventIndexInput, 10); // Convert the input to an integer
+  const eventIndex = parseInt(eventIndexInput, 10);
 
   if (isNaN(eventIndex) || eventIndex <= 0 || eventIndex > events.length) {
-    // alert('Please enter a valid event number.');
+  
     return;
   }
 
-  // Find the event based on the index entered by the user
-  const eventToDelete = events[eventIndex - 1]; // Assuming events are 1-indexed
+  const eventToDelete = events[eventIndex - 1]; 
 
   if (eventToDelete) {
-    await deleteDoc(doc(db, 'events', eventToDelete.id)); // Delete the event from Firestore
-    await fetchEvents(); // Fetch the updated events from Firebase
-    load(); // Refresh the calendar with the updated events
+    await deleteDoc(doc(db, 'events', eventToDelete.id));
+    await fetchEvents();
+    load(); 
     refreshEventDetailsModal(clicked);
 
   }
 
-  closeDeletePrompt(); // Close the prompt after the event is deleted
+  closeDeletePrompt();
 }
 
-// Open delete prompt when the "Delete Event" button is clicked
 document.getElementById('deleteButton').addEventListener('click', openDeletePrompt);
 
-// Event listener to trigger the delete event only when "Confirm Delete" is clicked
 document.getElementById('confirmDelete').addEventListener('click', deleteEvent);
 
-// Event listener to cancel the delete operation and close the modal when "Cancel" is clicked
 document.getElementById('cancelDelete').addEventListener('click', closeDeletePrompt);
 
-// Close the delete prompt modal when clicking outside of it
 window.addEventListener('click', (event) => {
   const deletePromptModal = document.getElementById('deletePromptModal');
   if (event.target === deletePromptModal) {
@@ -380,61 +289,33 @@ window.addEventListener('click', (event) => {
   }
 });
 
-
-
-// Move the openDeletePrompt function definition above the event listener attachment
 function openDeletePrompt() {
-  backDrop.style.display = 'block'; // Show the backdrop
+  backDrop.style.display = 'block';
   const deletePromptModal = document.getElementById('deletePromptModal');
-  deletePromptModal.style.display = 'block'; // Show the delete prompt modal
+  deletePromptModal.style.display = 'block';
 }
 
-// Function to close the delete prompt modal
+
 function closeDeletePrompt() {
-  backDrop.style.display = 'none'; // Hide the backdrop
+  backDrop.style.display = 'none';
   const deletePromptModal = document.getElementById('deletePromptModal');
-  deletePromptModal.style.display = 'none'; // Hide the delete prompt modal
-  document.getElementById('eventIndexInput').value = ''; // Clear the input field
+  deletePromptModal.style.display = 'none'; 
+  document.getElementById('eventIndexInput').value = ''; 
 }
 
-// Event listener setup to open delete prompt
+
 document.getElementById('deleteButton').addEventListener('click', openDeletePrompt);
 
-// Event listener to confirm delete
 document.getElementById('confirmDelete').addEventListener('click', deleteEvent);
 
-// Event listener to cancel delete
 document.getElementById('cancelDelete').addEventListener('click', closeDeletePrompt);
 
-// Close the delete prompt modal when clicking outside of it
 window.addEventListener('click', (event) => {
   const deletePromptModal = document.getElementById('deletePromptModal');
   if (event.target === deletePromptModal) {
       closeDeletePrompt();
   }
 });
-
-document.addEventListener('DOMContentLoaded', () => {
-  // Your other DOM content loaded logic here
-});
-
-// function openDeletePrompt() {
-//   console.log('Opening delete prompt');
-//  const deletePromptModal = document.getElementById('deletePromptModal');
-// //  const backdrop = document.getElementById('backdrop');
-//   backDrop.style.display = 'block';
-//   deletePromptModal.style.display = 'block';
-// }
-
-// function closeDeletePrompt() {
-//   console.log('Closing delete prompt');
-//   const deletePromptModal = document.getElementById('deletePromptModal');
-//   // const backdrop = document.getElementById('backdrop');
-//   // document.getElementById('backdrop').style.display = 'none';
-//   backdrop.style.display = 'none';
-//   deletePromptModal.style.display = 'none';
-//   document.getElementById('eventIndexInput').value = '';
-// }
 
 
 const confirmDeleteBtn = document.getElementById('confirmDelete');
@@ -448,41 +329,14 @@ document.addEventListener('DOMContentLoaded', () => {
   const deleteButton = document.getElementById('deleteButton');
   const confirmDeleteBtn = document.getElementById('confirmDelete');
   const cancelDelete = document.getElementById('cancelDelete');
-  // const closeButton = document.getElementById('closeButton');
-  // const closePromptBtn = document.querySelector('#deletePromptModal .close');
- // const deletePromptModal = document.getElementById('deletePromptModal');
 
-
-  // Open delete prompt when "Delete Event" is clicked
   deleteButton.addEventListener('click', openDeletePrompt);
 
-  // Handle confirm delete
   confirmDeleteBtn.addEventListener('click', deleteEvent);
 
-  // Handle cancel delete
   cancelDelete.addEventListener('click', closeDeletePrompt);
 
 });
-
-//   // Close the main modal
-//   closeButton.addEventListener('click', closeModal);
-
-//   // Close the delete prompt modal
-//  const closePromptBtn = document.querySelector('#deletePromptModal');
-
-//  if (closePromptBtn) {
-//   closePromptBtn.addEventListener('click', closeDeletePrompt);
-// } else {
-//   console.error("Close button inside the delete prompt modal not found.");
-// }
-
-// // Close the delete prompt modal when clicking outside of it
-// window.addEventListener('click', (event) => {
-//   if (event.target === deletePromptModal) {
-//     closeDeletePrompt();
-//   }
-// });
-// });
 
 async function updateEvent() {
   const title = document.getElementById('editEventTitleInput').value;
@@ -500,7 +354,6 @@ async function updateEvent() {
     load();
     closeEditModal();
 
-
     refreshEventDetailsModal(clicked);
     deleteEventModal.style.display = 'block';
     backDrop.style.display = 'block';
@@ -513,9 +366,8 @@ function refreshEventDetailsModal(date) {
   const eventsForDay = events.filter(e => e.date === date);
 
   if (eventsForDay.length > 0) {
-    // Sort events based on time in minutes
     document.getElementById('eventText').innerHTML = eventsForDay
-      .sort((a, b) => timeToMinutes(a.time) - timeToMinutes(b.time)) // Sort by time
+      .sort((a, b) => timeToMinutes(a.time) - timeToMinutes(b.time))
       .map((e, index) => {
         return `
           <div class="event-detail">
@@ -527,7 +379,6 @@ function refreshEventDetailsModal(date) {
       })
       .join('');
 
-    // Add event listeners to the Edit buttons
     document.querySelectorAll('.edit-event-button').forEach(button => {
       button.addEventListener('click', (event) => {
         const eventId = event.target.getAttribute('data-event-id');
@@ -538,7 +389,6 @@ function refreshEventDetailsModal(date) {
       });
     });
 
-        // Add event listeners to the Delete buttons
     document.querySelectorAll('.delete-event-button').forEach(button => {
       button.addEventListener('click', async (event) => {
         const eventId = event.target.getAttribute('data-event-id');

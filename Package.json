@@ -3,25 +3,24 @@
     "version": "1.0.0",
     "description": "",
     "scripts": {
-      "test": "echo \"Error: no test specified\"",
-      "start": "npx parcel --dist-dir build src/*.html",
-      "lint": "npx eslint src/",
-      "build": "npx parcel build --dist-dir build src/*.html",
-      "build-pages": "npx parcel build --dist-dir build --public-url /INFO-5164-WebsiteAssignment src/*.html"
+        "test": "echo \"Error: no test specified\"",
+        "start": "npx parcel --dist-dir build src/*.html",
+        "lint": "npx eslint src/",
+        "build": "npx parcel build --dist-dir build src/*.html",
+        "build-pages": "npx parcel build --dist-dir build --public-url /INFO-5164-WebsiteAssignment src/*.html"
     },
     "author": "",
     "license": "ISC",
     "devDependencies": {
-      "@eslint/js": "^9.20.0",
-      "buffer": "^6.0.3",
-      "eslint": "^9.20.1",
-      "globals": "^16.0.0",
-      "parcel": "^2.13.3",
-      "process": "^0.11.10"
+        "@eslint/js": "^9.20.0",
+        "buffer": "^6.0.3",
+        "eslint": "^9.20.1",
+        "globals": "^16.0.0",
+        "parcel": "^2.13.3",
+        "process": "^0.11.10"
     },
     "dependencies": {
-      "@google/generative-ai": "^0.22.0",
-      "firebase": "^11.3.1"
+        "@google/generative-ai": "^0.22.0",
+        "firebase": "^11.3.1"
     }
-  }
-  
+}
