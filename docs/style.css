@@ -2,7 +2,7 @@
 body {
   display: flex;
   justify-content: center;
-  background-color: #FFFCFF;
+  background-color: #eeebee;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -19,41 +19,41 @@ body {
   cursor: pointer;
   border: none;
   border-radius: 5px;
-  color: white;
+  color: rgb(255, 255, 255);
   text-align: center;
 }
 
-.modal-buttons {
+/* .modal-buttons {
   display: flex;
   justify-content: center;
   gap: 8px;
   margin-top: 5px;
 }
 
-/* Modal Buttons */
+
 .modal-buttons button {
   padding: 10px 20px;
   font-size: 14px;
   cursor: pointer;
   border: none;
   border-radius: 5px;
-  color: white;
+  color: rgb(223, 10, 10);
   text-align: center;
   flex: 1;
   max-width: 120px;
-}
+} */
 
 
 #addEventButton {
-  background-color: #92a1d1;
+  background-color: #4967c8;
 }
 
 #deleteButton {
-  background-color: #d36c6c;
+  background-color: #991307;
 }
 
 #closeButton {
-  background-color: #96d192;
+  background-color: #0f1c48;
 }
 
 .modal-content button:hover {
@@ -73,15 +73,14 @@ button {
 
 #header {
   padding: 10px;
-  color: #d36c6c;
-  font-size: 26px;
+  font-size: 30px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
 #header button {
-  background-color: #92a1d1;
+  background-color: #607bd5;
 }
 
 #container {
@@ -96,7 +95,8 @@ button {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   gap: 5px;
-  color: #247BA0;
+  color: #0f4f6a;
+  font-weight: 700;
   text-align: center;
   margin-bottom: 5px;
 }
@@ -118,7 +118,7 @@ button {
   cursor: pointer;
   box-sizing: border-box;
   background-color: white;
-  box-shadow: 0px 0px 3px #CBD4C2;
+  box-shadow: 0px 0px 3px #4e5050;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -127,18 +127,18 @@ button {
 }
 
 .day:hover {
-  background-color: #e8faed;
+  background-color: #e8eafa;
 }
 
 .day+#currentDay {
-  background-color: #e8f4fa;
+  background-color: #e8faef;
 }
 
 .day .day-number {
   position: absolute;
   top: 5px;
   left: 5px;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: bold;
 }
 
@@ -158,8 +158,8 @@ button {
 .event {
   font-size: 10px;
   padding: 3px;
-  background-color: #58bae4;
-  color: white;
+  background-color: #61a6e7;
+  color: rgb(0, 0, 0);
   border-radius: 5px;
   max-height: 55px;
   overflow: hidden;
@@ -169,26 +169,24 @@ button {
   flex-direction: column;
 }
 
-.event .event-description {
+/* .event .event-description {
   font-size: 8px;
-  color: white;
+  color: rgb(199, 34, 34);
   margin-top: 2px;
   overflow: hidden;
   text-overflow: ellipsis;
-}
+} */
 
-.day.multi-events {
+/* .day.multi-events {
   max-height: 180px;
-  /* Adjust depending on your design */
   overflow-y: auto;
-  /* Enables vertical scrolling */
-}
+} */
 
 .padding {
   cursor: default !important;
   background-color: #FFFCFF !important;
-  box-shadow: none !important;
   border: 1px solid #ddd;
+  box-shadow: 0px 0px 3px #4e5050;
 }
 
 /* Modal Styles */
@@ -197,7 +195,7 @@ button {
   display: none;
   z-index: 20;
   padding: 25px;
-  background-color: #e8f4fa;
+  background-color: #96c6f4;
   box-shadow: 0px 0px 3px black;
   border-radius: 5px;
   width: 90%;
@@ -207,11 +205,6 @@ button {
   font-family: sans-serif;
 }
 
-
-#cancelButton,
-#deleteButton {
-  background-color: #d36c6c;
-}
 
 
 #eventText {
@@ -224,7 +217,7 @@ button {
   left: 0px;
   z-index: 10;
   width: 100vw;
-  height: 100vh;
+  height: 140vh;
   position: absolute;
   background-color: rgba(0, 0, 0, 0.8);
 }
@@ -236,10 +229,11 @@ button {
   box-sizing: border-box;
   margin-bottom: 25px;
   border-radius: 3px;
+  color: #000000;
+  font-weight: 700;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   outline: none;
-  /* border: none; */
-  border: 1px solid #3d3d3d;
-  /* box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.2); */
+  border: 1px solid #000000;
 }
 
 #eventTitleInput.error {
@@ -255,6 +249,7 @@ button {
   background-color: #fff;
   box-sizing: border-box;
   outline: none;
+  text-align: left;
 }
 
 /* .choices[data-type*="select-one"] .choices__inner {
@@ -266,6 +261,9 @@ button {
   border-radius: 3px;
   z-index: 1 !important;
 } */
+
+
+
 
 #eventTimeInput option {
   font-size: 14px;
@@ -298,13 +296,25 @@ button {
 
 #eventDescriptionInput {
   max-width: 100%;
+  width: 100%;
   padding: 10px;
   font-size: 14px;
+  color: #000000;
+  font-weight: 700;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   border: 1px solid #3d3d3d;
   border-radius: 4px;
   box-sizing: border-box;
+  height: 100px;
+  margin-top: 5px;
+  outline: none;
+  box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.2);
+  background-color: #fff;
 }
 
+
+
+/* 
 #eventDescriptionInput:focus {
   border-color: #555;
   outline: none;
@@ -317,63 +327,24 @@ button {
 #eventTimeInput:focus {
   border-color: #555;
   outline: none;
-}
+} */
 
 
-label[for="eventDescriptionInput"] {
+/* label[for="eventDescriptionInput"] {
   display: block;
-  /* Makes the label take up the full width and forces the textarea to be on a new line */
   margin-top: 20px;
-  /* Add space between the label and the textarea */
-}
+} */
 
 
-#eventDescriptionInput {
-  width: 100%;
-  padding: 10px;
-  font-size: 14px;
-  border-radius: 3px;
-  border: 1px solid #3d3d3d;
-  box-sizing: border-box;
-  background-color: #fff;
-  outline: none;
-  box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.2);
-  margin-top: 5px;
-  /* Optional: adds a little space between the label and the textarea */
-  height: 100px;
-  /* Set a height for the textarea */
-}
+
 
 /* Focus and Hover Effects */
-#eventDescriptionInput:focus {
+/* #eventDescriptionInput:focus {
   border-color: #888;
   outline: none;
-}
+} */
 
 
-
-#emailInput,
-#phoneInput,
-#reminderTimeInput {
-  display: block;
-  /* Forces each input to be on a new line */
-  width: 100%;
-  /* Make the inputs take full width */
-  padding: 10px;
-  font-size: 14px;
-  margin-bottom: 15px;
-  /* Adds space between inputs */
-  border: 1px solid #3d3d3d;
-  border-radius: 3px;
-  box-sizing: border-box;
-  background-color: #fff;
-}
-
-#emailInput:focus,
-#phoneInput:focus,
-#reminderTimeInput:focus {
-  outline: none;
-}
 
 /* MAYBE KEEP????? */
 /* .modal-content {
@@ -387,7 +358,7 @@ label[for="eventDescriptionInput"] {
 
 
 
-
+/* 
 .modal input[type="number"] {
   padding: 10px;
   width: 80%;
@@ -396,7 +367,7 @@ label[for="eventDescriptionInput"] {
   border-radius: 5px;
 }
 
-/* Custom Alert Modal */
+
 .custom-alert-modal {
   display: none;
   position: fixed;
@@ -454,14 +425,13 @@ label[for="eventDescriptionInput"] {
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 999;
-}
+} */
 
 
-
+/* 
 
 #customPromptModal {
   display: none;
-  /* Hidden initially */
   position: fixed;
   top: 50%;
   left: 50%;
@@ -473,10 +443,10 @@ label[for="eventDescriptionInput"] {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   z-index: 1000;
   text-align: center;
-}
+} */
 
 /* Modal Content */
-#customPromptModal .modal-content {
+/* #customPromptModal .modal-content {
   padding: 20px;
   text-align: center;
 }
@@ -495,7 +465,7 @@ label[for="eventDescriptionInput"] {
   font-size: 14px;
 }
 
-#customPromptModal button {
+/* #customPromptModal button {
   width: 100px;
   padding: 10px;
   margin: 5px;
@@ -504,24 +474,24 @@ label[for="eventDescriptionInput"] {
   border: none;
   border-radius: 5px;
   color: white;
-}
-
+} */
+/* 
 #customPromptModal #submitEventNumber {
   background-color: #4CAF50;
-  /* Green */
+
 }
 
 #customPromptModal #cancelPromptModal {
   background-color: #f44336;
-  /* Red */
+
 }
 
 #customPromptModal button:hover {
   opacity: 0.8;
-}
+} */
 
-/* Close button (X) */
-#customPromptModal .close {
+
+/* #customPromptModal .close {
   position: absolute;
   top: 10px;
   right: 10px;
@@ -532,8 +502,8 @@ label[for="eventDescriptionInput"] {
 
 #customPromptModal .close:hover {
   color: #000;
-}
-
+} 
+ */
 
 
 
@@ -545,15 +515,14 @@ label[for="eventDescriptionInput"] {
 /* Edit Event Modal Styling */
 #editEventModal {
   display: none;
-  /* Hidden initially */
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: #fff;
+  background-color: #ebd2e9;
   padding: 20px;
   border-radius: 10px;
-  width: 300px;
+  width: 350px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   z-index: 1000;
   text-align: center;
@@ -591,91 +560,120 @@ label[for="eventDescriptionInput"] {
   cursor: pointer;
   border: none;
   border-radius: 5px;
-  color: white;
+  color: rgb(0, 0, 0);
+  background-color: #e17f9b;
 }
 
-#editEventModal #submitEditEvent {
-  background-color: #4CAF50;
-  /* Green */
+/* #editEventModal #submitEditEvent {
+  background-color: #a04caf;
+
 }
 
 #editEventModal #cancelEditEvent {
   background-color: #f44336;
-  /* Red */
-}
+
+} */
 
 #editEventModal button:hover {
   opacity: 0.8;
 }
 
 /* Close button (X) */
-#editEventModal .close {
+/* #editEventModal .close {
   position: absolute;
   top: 10px;
   right: 10px;
   font-size: 20px;
   cursor: pointer;
   color: #aaa;
-}
+} */
 
-#editEventModal .close:hover {
+/* #editEventModal .close:hover {
   color: #000;
-}
+} */
 
 
-.event-item {
+/* .event-item {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 10px;
-}
+} */
 
 .event-details {
   flex-grow: 1;
-  /* This makes the event details take up available space */
 }
 
-.edit-btn {
+/* .edit-btn {
   background-color: #4CAF50;
   color: white;
   padding: 5px 10px;
   border: none;
   cursor: pointer;
+} */
+
+/* .edit-btn:hover {
+  background-color: #59655a;
+} */
+
+
+.event-detail {
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
 }
 
-.edit-btn:hover {
-  background-color: #45a049;
+.edit-event-button {
+  background-color: #373737;
+  color: rgb(255, 255, 255);
+  border: none;
+  padding: 5px 10px;
+  border-radius: 3px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.edit-event-button:hover {
+  background-color: #e05ba4;
 }
 
 
+.time-select-container {
+  width: 87%;  
+  box-sizing: border-box; 
+  margin: 0 auto; 
+}
 
 
 
 
 /* Custom Alert Styles */
-.custom-alert {
+/* .custom-alert {
   display: none;
-  /* Hidden by default */
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
-  /* Semi-transparent background */
   justify-content: center;
   align-items: center;
   z-index: 1000;
-}
+} */
 
-.alert-content {
+/* .alert-content {
   background-color: #fff;
   padding: 20px;
   border-radius: 8px;
   text-align: center;
   width: 300px;
-}
-
+} */
+/* 
 .alert-content h2 {
   margin-bottom: 10px;
   font-size: 18px;
@@ -689,7 +687,7 @@ label[for="eventDescriptionInput"] {
   padding: 10px 20px;
   font-size: 16px;
   background-color: #4CAF50;
-  /* Green background */
+
   color: white;
   border: none;
   border-radius: 5px;
@@ -698,8 +696,8 @@ label[for="eventDescriptionInput"] {
 
 .alert-content button:hover {
   background-color: #45a049;
-  /* Darker green on hover */
-}
+
+} */
 
 
 
@@ -899,12 +897,130 @@ rgba(0, 0, 0, 0.1);
   height: 150px;
 }
 
+
 #displayMonth {
-  font-size: 24px;
+  font-size: 32px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   font-weight: bold;
   margin-bottom: 20px;
-  color: #5c17e5; 
+  color: #a60419; 
 }
+
+
+
+
+/* here */
+
+/* Modal Styling */
+/* Delete Event Modal Styling */
+#deletePromptModal {
+  display: none;
+  /* Hidden initially */
+  position: fixed;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  width: 350px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  text-align: center;
+}
+
+#deletePromptModal p {
+  font-size: 16px;
+  margin-bottom: 15px;
+}
+
+#deletePromptModal .input-container {
+  margin-bottom: 20px;
+}
+
+#deletePromptModal input {
+  width: 80%;
+  max-width: 80%;
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+#deletePromptModal button {
+  padding: 10px 15px;
+  margin: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  color: white;
+}
+
+
+
+#deletePromptModal #confirmDelete {
+  background-color: #991307;
+}
+
+#deletePromptModal #cancelDelete {
+  background-color: #0f1c48;
+}
+
+#deletePromptModal button:hover {
+  opacity: 0.8;
+}
+
+
+#deletePromptModal .close:hover {
+  color: #000;
+}
+
+/* Modal Overlay */
+#deletePromptModal::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(199, 219, 238); /* Semi-transparent overlay */
+  z-index: -1;
+}
+
+
+
+
+
+#saveButton {
+  background-color: #1d541e; 
+  color: white; 
+}
+
+#saveButton:hover {
+  background-color: #45a049; 
+}
+
+
+#cancelButton {
+  background-color: #991307;
+  color: white;
+}
+
+#cancelButton:hover {
+  background-color: #e53935; 
+}
+
+
+
+
+
+
+
+
+
+
 
 /* Sign-In Page Styles
 #signin-container {
