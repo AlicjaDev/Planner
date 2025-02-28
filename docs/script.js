@@ -400,6 +400,15 @@ function refreshEventDetailsModal(date) {
   }
 }
 
+// Toggle chatbot
+const toggleButton = document.getElementById('toggle-chatbot');
+const chatbotContent = document.getElementById('chatbot-content');
+
+toggleButton.addEventListener('click', () => {
+  chatbotContent.classList.toggle('open');
+});
+
+
 function closeEditModal() {
   document.getElementById('editEventModal').style.display = 'none';
   backDrop.style.display = 'none';

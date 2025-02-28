@@ -52,7 +52,7 @@
     biometricSignInButton.addEventListener('click', async () => {
       try {
         if (!window.PublicKeyCredential) {
-          alert("Biometric authentication is not supported in this browser.");
+          // alert("Biometric authentication is not supported in this browser.");
           return;
         }
 
@@ -83,13 +83,13 @@
           publicKey: options,
         });
 
-        console.log("Biometric credential created:", credential);
+        // console.log("Biometric credential created:", credential);
 
         localStorage.setItem("email", "user@example.com");
         window.location.href = "calendar.html";
       } catch (error) {
-        console.error("Biometric authentication failed:", error);
-        alert("Biometric authentication failed. Please try again.");
+        // console.error("Biometric authentication failed:", error);
+        // alert("Biometric authentication failed. Please try again.");
       }
     });
 
@@ -99,13 +99,13 @@
       const qrCodeContainer = document.getElementById('qr-code');
       const url = "https://alicjadev.github.io/Planner/";
 
-      QRCode.toCanvas(qrCodeContainer, url, (error) => {
-        if (error) {
-          console.error("Error generating QR code:", error);
-        } else {
-          console.log("QR code generated successfully.");
-        }
-      });
+      // QRCode.toCanvas(qrCodeContainer, url, (error) => {
+      //   if (error) {
+      //     console.error("Error generating QR code:", error);
+      //   } else {
+      //     console.log("QR code generated successfully.");
+      //   }
+      // });
     });
 
   </script>
