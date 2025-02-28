@@ -5064,7 +5064,7 @@
 82C:\Users\ala_b\Desktop\Planner\node_modules\@eslint-community\regexpp\index.js.map133850994467367653 0
 77C:\Users\ala_b\Desktop\Planner\node_modules\@grpc\grpc-js\build\src\picker.js133850994484126503 0
 90C:\Users\ala_b\Desktop\Planner\node_modules\firebase\firestore\lite\dist\compat\index.d.ts133850994543571915 0
-45C:\Users\ala_b\Desktop\Planner\docs\style.css133852246655879260 0
+45C:\Users\ala_b\Desktop\Planner\docs\style.css133852271825202143 0
 63C:\Users\ala_b\Desktop\Planner\node_modules\cross-spawn\LICENSE133850994459773837 0
 102C:\Users\ala_b\Desktop\Planner\node_modules\@firebase\vertexai\dist\src\requests\response-helpers.d.ts133850994481546299 0
 100C:\Users\ala_b\Desktop\Planner\node_modules\htmlnano\docs\versioned_docs\version-2.0.0\030-config.md133850994483006911 0
@@ -12490,7 +12490,7 @@
 72C:\Users\ala_b\Desktop\Planner\node_modules\@parcel\watcher\src\watchman133850994479383216 1
 83C:\Users\ala_b\Desktop\Planner\node_modules\@grpc\grpc-js\build\src\duration.js.map133850994488485200 0
 89C:\Users\ala_b\Desktop\Planner\node_modules\@parcel\watcher\src\windows\WindowsBackend.cc133850994475798412 0
-42C:\Users\ala_b\Desktop\Planner\docs\app.js133852241395341124 0
+42C:\Users\ala_b\Desktop\Planner\docs\app.js133852272633254725 0
 89C:\Users\ala_b\Desktop\Planner\node_modules\@parcel\watcher\src\windows\WindowsBackend.hh133850994479733339 0
 108C:\Users\ala_b\Desktop\Planner\node_modules\@firebase\firestore\dist\lite\firestore\src\local\simple_db.d.ts133850994510981922 0
 84C:\Users\ala_b\Desktop\Planner\node_modules\@parcel\watcher\src\windows\win_utils.cc133850994475470691 0
@@ -16233,5 +16233,5 @@
 55C:\Users\ala_b\Desktop\Planner\node_modules\.bin\parcel133850994567460502 0
 75C:\Users\ala_b\Desktop\Planner\node_modules\.bin\update-browserslist-db.ps1133850994568116653 0
 49C:\Users\ala_b\Desktop\Planner\docs\calendar.html133852241805419227 0
-46C:\Users\ala_b\Desktop\Planner\docs\index.html133852251595195556 0
-45C:\Users\ala_b\Desktop\Planner\docs\script.js133852246883790764 0
+46C:\Users\ala_b\Desktop\Planner\docs\index.html133852278970784334 0
+45C:\Users\ala_b\Desktop\Planner\docs\script.js133852262065002154 0

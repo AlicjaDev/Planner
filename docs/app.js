@@ -138,6 +138,24 @@ function ruleChatBot(request) {
   return false;
 }
 
+
+function parseEventDetails(eventDetails) {
+  console.log("Parsing event details:", eventDetails);
+
+  const parts = eventDetails.split(" on ");
+  const title = parts[0].trim().replace(/"/g, ''); // Remove quotes and trim
+
+  const dateTimeDesc = parts[1] ? parts[1].split(" at ") : [];
+  const date = dateTimeDesc[0] ? dateTimeDesc[0].trim() : null;
+
+  const timeDesc = dateTimeDesc[1] ? dateTimeDesc[1].split(" with ") : [];
+  const time = timeDesc[0] ? timeDesc[0].trim() : null;
+  const description = timeDesc[1] ? timeDesc[1].trim() : null;
+
+  console.log("Parsed values:", { title, date, time, description });
+  return [title, date, time, description];
+}
+
 function parseEditDetails(editDetails) {
   console.log("Parsing edit details:", editDetails);
 
