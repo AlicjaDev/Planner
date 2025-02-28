@@ -5,13 +5,18 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Planner</title>
-  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-lite.js"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css" />
   <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
-
   <link rel="stylesheet" href="style.css">
   <script type="module" src="script.js"></script>
+  <script type="module" src="app.js"></script>
+
+  <script type="module">
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js';
+    import { getFirestore, collection, addDoc, getDocs } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-lite.js';
+    import { getAuth, GoogleAuthProvider } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js'; // Corrected import
+  </script>
+
 </head>
 
 <body>
@@ -31,9 +36,20 @@
     </div>
 
     <div id="calendar"></div>
+
+
+    <div id="chatbot-container">
+      <button id="toggle-chatbot">Toggle Chatbot</button>
+      <div id="chatbot-content">
+        <div id="chat-history"></div>
+        <input id="aiInput" placeholder="Type your message..."> <button
+          id="aiButton">Send</button>
+      </div>
+    </div>
   </div>
 
 
+  </div>
 
   <div id="newEventModal">
     <h2>New Event</h2>
@@ -59,13 +75,6 @@
   <button id="cancelEditButton">Cancel</button>
 </div>
 
-  <!-- <div id="deleteEventModal">
-    <h2>Event Details</h2>
-    <p id="eventText"></p>
-    <button id="deleteButton">Delete</button> 
-    <button id="closeButton">Close</button>
-  </div> -->
-
     <div id="deleteEventModal">
     <div class="modal-content">
       <h2>Event Details</h2>
@@ -88,18 +97,6 @@
     </div>
   </div>
 
-  <!-- <div id="deleteEventModal" class="modal">
-    <div class="modal-content">
-      <span id="closeDeleteButton" class="close">&times;</span>
-      <h2>Event Details</h2>
-      <p id="eventText"></p>
-      <button id="addEventButton">Add New Event</button>
-      <button id="deleteButton">Delete Event</button>
-      <button id="closeButton">Close</button>
-    </div>
-  </div> -->
-
-  <!-- <div id="modalBackDrop"></div> -->
   <div id="modalBackDrop" class="backdrop"></div>
 
 </body>
