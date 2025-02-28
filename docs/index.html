@@ -1,0 +1,287 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign In</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      flex-direction: column;
+      background-color: #f4f4f4;
+    }
+    #qr-code-container {
+      margin-top: 20px;
+      text-align: center;
+    }
+    #qr-code {
+      border: 1px solid #ccc;
+      padding: 10px;
+      background: white;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>Sign In</h1>
+  <button id="biometricSignIn">Sign In with Biometrics</button>
+
+  <div id="qr-code-container">
+    <h3>Scan to Open on Mobile</h3>
+    <canvas id="qr-code"></canvas>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+  <script>
+// Biometric Authentication
+const biometricSignInButton = document.getElementById('biometricSignIn');
+
+biometricSignInButton.addEventListener('click', async () => {
+  try {
+    // Check if WebAuthn is supported
+    if (!window.PublicKeyCredential) {
+      alert("Biometric authentication is not supported in this browser.");
+      return;
+    }
+
+    // Fetch challenge from server (mock for now)
+    const challenge = new Uint8Array(32);
+    window.crypto.getRandomValues(challenge);
+
+    // Create options for WebAuthn
+    const options = {
+      challenge: challenge,
+      rp: {
+        name: "Event Planter",
+      },
+      user: {
+        id: new Uint8Array(16),
+        name: "user@example.com",
+        displayName: "User",
+      },
+      pubKeyCredParams: [
+        {
+          type: "public-key",
+          alg: -7, // ES256
+        },
+      ],
+      timeout: 60000,
+      attestation: "direct",
+    };
+
+    // Create a new credential (register user)
+    const credential = await navigator.credentials.create({
+      publicKey: options,
+    });
+
+    console.log("Biometric credential created:", credential);
+
+    // Simulate successful authentication
+    localStorage.setItem("email", "user@example.com");
+    window.location.href = "calendar.html";
+  } catch (error) {
+    console.error("Biometric authentication failed:", error);
+    alert("Biometric authentication failed. Please try again.");
+  }
+});
+
+
+// Generate QR Code
+document.addEventListener('DOMContentLoaded', () => {
+  const qrCodeContainer = document.getElementById('qr-code');
+  const url = "https://alicjadev.github.io/event-planner/"; // Link to your app
+
+  QRCode.toCanvas(qrCodeContainer, url, (error) => {
+    if (error) {
+      console.error("Error generating QR code:", error);
+    } else {
+      console.log("QR code generated successfully.");
+    }
+  });
+});
+
+
+
+
+
+// <!-- <!DOCTYPE html>
+// <html lang="en">
+// <head>
+//   <meta charset="UTF-8">
+//   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+//   <title>Sign In</title>
+//   <style>
+//     body {
+//       font-family: Arial, sans-serif;
+//       display: flex;
+//       justify-content: center;
+//       align-items: center;
+//       height: 100vh;
+//       flex-direction: column;
+//       background-color: #f4f4f4;
+//     }
+//     #qr-code-container {
+//       margin-top: 20px;
+//       text-align: center;
+//     }
+//     #qr-code {
+//       border: 1px solid #ccc;
+//       padding: 10px;
+//       background: white;
+//     }
+//     button {
+//       padding: 10px 20px;
+//       font-size: 16px;
+//       cursor: pointer;
+//     }
+//   </style>
+// </head>
+// <body>
+//   <h1>Sign In</h1>
+//   <button id="biometricSignIn">Sign In with Biometrics</button>
+
+//   <div id="qr-code-container">
+//     <h3>Scan to Open on Mobile</h3>
+//     <canvas id="qr-code"></canvas>
+//   </div>
+
+//   <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+//   <script>
+//     // Biometric Authentication
+//     const biometricSignInButton = document.getElementById('biometricSignIn');
+
+//     biometricSignInButton.addEventListener('click', async () => {
+//       try {
+//         // Check if WebAuthn is supported
+//         if (!window.PublicKeyCredential) {
+//           alert("Biometric authentication is not supported in this browser.");
+//           return;
+//         }
+
+//         // Fetch challenge from server (mock for now)
+//         const challenge = new Uint8Array(32);
+//         window.crypto.getRandomValues(challenge);
+
+//         // Create options for WebAuthn
+//         const options = {
+//           challenge: challenge,
+//           rp: {
+//             name: "Event Planner",
+//           },
+//           user: {
+//             id: new Uint8Array(16),
+//             name: "user@example.com",
+//             displayName: "User",
+//           },
+//           pubKeyCredParams: [
+//             {
+//               type: "public-key",
+//               alg: -7, // ES256
+//             },
+//           ],
+//           timeout: 60000,
+//           attestation: "direct",
+//         };
+
+//         // Create a new credential (register user)
+//         const credential = await navigator.credentials.create({
+//           publicKey: options,
+//         });
+
+//         console.log("Biometric credential created:", credential);
+
+//         // Simulate successful authentication
+//         localStorage.setItem("authenticated", "true");
+//         window.location.href = "index.html";
+//       } catch (error) {
+//         console.error("Biometric authentication failed:", error);
+//         alert("Biometric authentication failed. Please try again.");
+//       }
+//     });
+
+//     // Generate QR Code
+//     document.addEventListener('DOMContentLoaded', () => {
+//       const qrCodeContainer = document.getElementById('qr-code');
+//       const url = window.location.href.replace('signin.html', 'index.html'); // Link to your app
+
+//       QRCode.toCanvas(qrCodeContainer, url, (error) => {
+//         if (error) {
+//           console.error("Error generating QR code:", error);
+//         } else {
+//           console.log("QR code generated successfully.");
+//         }
+//       });
+//     });
+//   </script>
+// </body>
+// </html> 
+
+// // Generate QR Code for the main page
+    // const qrCodeElement = document.getElementById('qr-code');
+    // const mainPageUrl = window.location.href.replace('signin.html', 'index.html');
+    // QRCode.toCanvas(qrCodeElement, mainPageUrl, function (error) {
+    //   if (error) console.error(error);
+    // });
+
+    // // Biometric Sign-In Logic
+    // document.getElementById('biometricSignIn').addEventListener('click', async () => {
+    //   try {
+    //     // Use Web Authentication API for biometric authentication
+    //     const publicKey = {
+    //       challenge: new Uint8Array(32),
+    //       rp: { id: 'your-domain.com', name: 'Event Planner' },
+    //       user: { id: new Uint8Array(16), name: 'user@example.com', displayName: 'User' },
+    //       pubKeyCredParams: [{ type: 'public-key', alg: -7 }],
+    //       authenticatorSelection: { userVerification: 'required' },
+    //       timeout: 60000,
+    //     };
+
+    //     const credential = await navigator.credentials.create({ publicKey });
+
+    //     // If authentication is successful, store a flag in localStorage and redirect
+    //     localStorage.setItem('authenticated', 'true');
+    //     window.location.href = 'index.html';
+    //   } catch (error) {
+    //     console.error('Biometric authentication failed:', error);
+    //     alert('Biometric authentication failed. Please try again.');
+    //   }
+    // });
+  </script>
+</body>
+</html>
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign In - Event Planter</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+</head>
+<body>
+  <div id="signin-container">
+    <h1>Welcome to Event Planner</h1>
+    <button id="googleSignIn">Sign In with Google</button>
+    <button id="biometricSignIn">Sign In with Biometrics</button>
+    <div id="qr-code-container">
+      <h3>Scan to Share</h3>
+      <canvas id="qr-code"></canvas>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html> -->
