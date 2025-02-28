@@ -522,9 +522,9 @@ button {
 }
 
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   #displayMonth {
-    font-size: 18px; 
+    font-size: 15px; 
   }
 }
 
